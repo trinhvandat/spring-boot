@@ -1,0 +1,38 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="post-table-v1.0.0" author="Leonard">
+        <createTable tableName="posts">
+            <column name="id" type="integer" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_post_id"/>
+            </column>
+            <column name="title" type="varchar(512)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creator" type="varchar(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="data-post-table" author="Leonard">
+        <loadData tableName="posts"
+                  file="csv/post-default-data.csv"
+                  encoding="UTF-8"
+                  relativeToChangelogFile="true" separator=",">
+            <column name="id" type="numeric"/>
+            <column name="title" type="string"/>
+            <column name="creator" type="string"/>
+            <column name="created_at" type="date"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>
