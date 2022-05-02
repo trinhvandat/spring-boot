@@ -17,6 +17,7 @@
 
     <modules>
         <module>criteria-query</module>
+        <module>spring-boot-javers</module>
     </modules>
 
     <properties>
